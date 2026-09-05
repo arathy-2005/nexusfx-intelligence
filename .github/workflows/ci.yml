@@ -1,0 +1,46 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "20 2 * * *"
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx prisma generate
+      - run: npm run build
+        env:
+          JWT_SECRET: ci-secret-not-for-production-use-32
+          NEXT_PUBLIC_APP_URL: http://localhost:3000
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ci?schema=public
+  ml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r ml/requirements.txt
+      - run: python -m ml.train
+        env:
+          PYTHONPATH: .
+  nightly:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r ml/requirements.txt
+      - run: python -m ml.nightly
+        env:
+          PYTHONPATH: .
