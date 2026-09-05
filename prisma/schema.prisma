@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum SignalSide {
+  BUY
+  SELL
+  WAIT
+}
+
+enum ImpactLevel {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum NewsCategory {
+  FOREX
+  FEDERAL_RESERVE
+  ECB
+  BOE
+  RBA
+  BOJ
+  CENTRAL_BANK
+  GENERAL
+}
+
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  name          String
+  passwordHash  String
+  role          Role           @default(USER)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  settings      UserSettings?
+  watchlist     WatchlistItem[]
+  journal       JournalEntry[]
+  savedAnalyses SavedAnalysis[]
+  notifications Notification[]
+  favoritePairs FavoritePair[]
+}
+
+model UserSettings {
+  id               String  @id @default(cuid())
+  userId           String  @unique
+  user             User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  theme            String  @default("dark")
+  defaultTimeframe String  @default("1H")
+  riskPercent      Float   @default(1)
+  accountCurrency  String  @default("USD")
+}
+
+model Signal {
+  id          String     @id @default(cuid())
+  pair        String
+  side        SignalSide
+  entry       Float
+  stopLoss    Float
+  takeProfit  Float
+  confidence  Int
+  riskPercent Float
+  trend       String
+  timeframe   String
+  reason      String
+  expiresAt   DateTime
+  published   Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model WatchlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  symbol    String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, symbol])
+}
+
+model FavoritePair {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  symbol    String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, symbol])
+}
+
+model JournalEntry {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pair      String
+  side      String
+  notes     String
+  outcome   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SavedAnalysis {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pair       String
+  timeframe  String
+  payload    Json
+  createdAt  DateTime @default(now())
+}
+
+model NewsArticle {
+  id          String       @id @default(cuid())
+  title       String
+  summary     String
+  source      String
+  category    NewsCategory
+  url         String?
+  publishedAt DateTime
+  createdAt   DateTime     @default(now())
+}
+
+model CalendarEvent {
+  id        String      @id @default(cuid())
+  title     String
+  country   String
+  currency  String
+  impact    ImpactLevel
+  forecast  String?
+  previous  String?
+  actual    String?
+  eventTime DateTime
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  body      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model AppSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value Json
+}
