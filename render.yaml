@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: nexusfx-ml
+    runtime: docker
+    dockerfilePath: ./ml/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHONPATH
+        value: /app

@@ -16,15 +16,17 @@ export function SiteFooter() {
             <Link href="/charts">Charts</Link>
             <Link href="/analysis">AI analysis</Link>
             <Link href="/signals">Signals</Link>
+            <Link href="/intelligence">AI desk</Link>
+            <Link href="/predictions">Predictions</Link>
           </div>
         </div>
         <div>
-          <p className="text-sm font-medium">Tools</p>
+          <p className="text-sm font-medium">Research</p>
           <div className="mt-3 grid gap-2 text-sm text-white/60">
-            <Link href="/calculators/lot-size">Lot size calculator</Link>
-            <Link href="/calculators/pip">Pip calculator</Link>
+            <Link href="/models">Model performance</Link>
+            <Link href="/backtesting">Backtesting</Link>
+            <Link href="/scanner">Market scanner</Link>
             <Link href="/calendar">Economic calendar</Link>
-            <Link href="/news">Market news</Link>
           </div>
         </div>
         <div>

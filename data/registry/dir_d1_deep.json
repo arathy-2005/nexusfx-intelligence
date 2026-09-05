@@ -1,0 +1,29 @@
+{
+  "task": "dir_d1",
+  "champion": {
+    "name": "transformer",
+    "accuracy": 0.6334459185600281
+  },
+  "leaderboard": [
+    {
+      "name": "lstm",
+      "accuracy": 0.5954391956329346
+    },
+    {
+      "name": "gru",
+      "accuracy": 0.587837815284729
+    },
+    {
+      "name": "transformer",
+      "accuracy": 0.6334459185600281
+    },
+    {
+      "name": "nbeats",
+      "accuracy": 0.6157094836235046
+    },
+    {
+      "name": "patchtst",
+      "accuracy": 0.5270270109176636
+    }
+  ]
+}

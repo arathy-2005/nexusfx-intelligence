@@ -16,6 +16,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/dashboard",
     "/sign-in",
     "/docs",
+    "/intelligence",
+    "/predictions",
+    "/models",
+    "/scanner",
+    "/patterns",
+    "/backtesting",
+    "/strategy",
+    "/portfolio",
+    "/risk",
+    "/journal",
+    "/monitoring",
+    "/settings",
   ];
   return paths.map((path) => ({
     url: `${base}${path}`,

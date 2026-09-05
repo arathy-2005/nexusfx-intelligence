@@ -44,3 +44,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python / ml
+.venv/
+__pycache__/
+*.pyc
+data/parquet/
+*.joblib
+.pytest_cache/
+

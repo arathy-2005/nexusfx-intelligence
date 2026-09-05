@@ -1,0 +1,35 @@
+{
+  "task": "trend",
+  "leaderboard": [
+    {
+      "name": "logistic_regression",
+      "task": "trend",
+      "accuracy": 0.9855555555555555,
+      "log_loss": 0.02723069869990255
+    },
+    {
+      "name": "random_forest",
+      "task": "trend",
+      "accuracy": 0.9522222222222222,
+      "log_loss": 0.17362565927398324
+    },
+    {
+      "name": "hist_gbm",
+      "task": "trend",
+      "accuracy": 1.0,
+      "log_loss": 3.7145130555591974e-06
+    },
+    {
+      "name": "sklearn_gbm",
+      "task": "trend",
+      "accuracy": 0.9955555555555556,
+      "log_loss": 0.0746647520265379
+    }
+  ],
+  "champion": {
+    "task": "trend",
+    "name": "hist_gbm",
+    "accuracy": 1.0,
+    "path": "C:\\Users\\jsara\\forex-analysis-platform\\data\\registry\\trend_hist_gbm.joblib"
+  }
+}

@@ -1,0 +1,34 @@
+services:
+  ml-api:
+    build:
+      context: .
+      dockerfile: ml/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  web:
+    image: node:20-alpine
+    working_dir: /web
+    command: sh -c "npm install && npx prisma generate && npm run dev -- --hostname 0.0.0.0"
+    ports:
+      - "3000:3000"
+    environment:
+      - ML_API_URL=http://ml-api:8000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - JWT_SECRET=dev-docker-secret-change-me-32chars
+    volumes:
+      - .:/web
+      - /web/node_modules
+    depends_on:
+      - ml-api

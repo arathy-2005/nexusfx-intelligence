@@ -1,0 +1,35 @@
+{
+  "task": "dir_h1",
+  "leaderboard": [
+    {
+      "name": "logistic_regression",
+      "task": "dir_h1",
+      "accuracy": 0.9744444444444444,
+      "log_loss": 0.12028755267531101
+    },
+    {
+      "name": "random_forest",
+      "task": "dir_h1",
+      "accuracy": 0.7522222222222222,
+      "log_loss": 0.7916931548842953
+    },
+    {
+      "name": "hist_gbm",
+      "task": "dir_h1",
+      "accuracy": 1.0,
+      "log_loss": 6.419465204153679e-06
+    },
+    {
+      "name": "sklearn_gbm",
+      "task": "dir_h1",
+      "accuracy": 1.0,
+      "log_loss": 0.0037974670674717635
+    }
+  ],
+  "champion": {
+    "task": "dir_h1",
+    "name": "hist_gbm",
+    "accuracy": 1.0,
+    "path": "C:\\Users\\jsara\\forex-analysis-platform\\data\\registry\\dir_h1_hist_gbm.joblib"
+  }
+}

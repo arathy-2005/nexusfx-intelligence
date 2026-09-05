@@ -1,0 +1,29 @@
+{
+  "task": "trend",
+  "champion": {
+    "name": "patchtst",
+    "accuracy": 0.8614864945411682
+  },
+  "leaderboard": [
+    {
+      "name": "lstm",
+      "accuracy": 0.7905405163764954
+    },
+    {
+      "name": "gru",
+      "accuracy": 0.7804054021835327
+    },
+    {
+      "name": "transformer",
+      "accuracy": 0.8217905163764954
+    },
+    {
+      "name": "nbeats",
+      "accuracy": 0.8048986196517944
+    },
+    {
+      "name": "patchtst",
+      "accuracy": 0.8614864945411682
+    }
+  ]
+}

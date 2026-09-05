@@ -6,10 +6,17 @@ Educational market analysis, probability-based study ideas, and risk tools.
 
 NexusFX does **not** execute trades, hold funds, or connect to broker order routing.
 
+## AI intelligence plane
+
+Python FastAPI + parquet datasets + model registry live in `ml/`. The Next.js app exposes Bloomberg-style desks (`/intelligence`, `/predictions`, `/scanner`, `/models`, `/backtesting`, …) and will call `ML_API_URL` when set. See [docs/ML.md](docs/ML.md).
+
 ## Folder structure
 
 ```
 forex-analysis-platform/
+├── ml/                   # ingest, features, train, FastAPI
+├── data/registry/        # champion models + leaderboards
+├── docker-compose.yml
 ├── prisma/
 │   ├── schema.prisma
 │   └── seed.ts
