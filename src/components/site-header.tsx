@@ -41,6 +41,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const [more, setMore] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#070b14]/80 backdrop-blur-xl">
@@ -63,18 +64,20 @@ export function SiteHeader() {
               {l.label}
             </Link>
           ))}
-          <details className="relative">
-            <summary className="cursor-pointer list-none rounded-md px-2.5 py-1.5 text-sm text-white/70 hover:bg-white/5">
+          <div className="relative">
+            <button type="button" className="rounded-md px-2.5 py-1.5 text-sm text-white/70 hover:bg-white/5" onClick={() => setMore((v) => !v)}>
               More
-            </summary>
-            <div className="absolute right-0 z-50 mt-2 grid w-56 gap-1 rounded-xl border border-white/10 bg-[#0b1220] p-2 shadow-xl">
-              {MORE.map((l) => (
-                <Link key={l.href} href={l.href} className="rounded-md px-2 py-1.5 text-sm text-white/80 hover:bg-white/5">
-                  {l.label}
-                </Link>
-              ))}
-            </div>
-          </details>
+            </button>
+            {more && (
+              <div className="absolute right-0 z-50 mt-2 grid w-56 gap-1 rounded-xl border border-white/10 bg-[#0b1220] p-2 shadow-xl">
+                {MORE.map((l) => (
+                  <Link key={l.href} href={l.href} onClick={() => setMore(false)} className="rounded-md px-2 py-1.5 text-sm text-white/80 hover:bg-white/5">
+                    {l.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>

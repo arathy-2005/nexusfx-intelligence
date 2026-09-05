@@ -53,7 +53,10 @@ export function TradingViewChart({
         container_id: holder.id,
       });
     };
-    document.body.appendChild(script);
+    script.onerror = () => {
+      holder.textContent = "Chart widget blocked by the browser. Allow TradingView scripts or try another network.";
+    };
+    container.appendChild(script);
     return () => {
       container.innerHTML = "";
     };

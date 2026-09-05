@@ -53,3 +53,5 @@ data/parquet/
 *.joblib
 .pytest_cache/
 
+
+.vercel

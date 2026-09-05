@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { LiveTicker } from "@/components/live-ticker";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,7 +21,7 @@ export default function HomePage() {
     <div>
       <section className="hero-grid relative overflow-hidden">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 lg:grid-cols-2 lg:items-center">
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <div>
             <p className="mb-3 text-xs uppercase tracking-[0.28em] text-cyan-300">Analysis platform · no execution</p>
             <h1 className="text-4xl font-semibold leading-tight sm:text-6xl">
               See the market clearly.
@@ -41,10 +40,8 @@ export default function HomePage() {
               </Button>
             </div>
             <p className="mt-6 text-xs text-amber-200/90">{DISCLAIMER}</p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
+          </div>
+          <div
             className="rounded-3xl border border-white/10 bg-black/40 p-5 shadow-2xl"
           >
             <p className="text-sm text-white/50">Latest market updates</p>
@@ -55,7 +52,7 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </div>
       </section>
       <LiveTicker />

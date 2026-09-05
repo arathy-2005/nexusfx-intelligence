@@ -26,7 +26,7 @@ export function LiveTicker() {
             <span className="font-mono">{formatNumber(q.price, q.price > 20 ? 2 : 5)}</span>
             <span className={q.change24h >= 0 ? "text-emerald-400" : "text-rose-400"}>
               {q.change24h >= 0 ? "+" : ""}
-              {q.change24h.toFixed(2)}%
+              {Number(q.change24h ?? 0).toFixed(2)}%
             </span>
           </span>
         ))}
